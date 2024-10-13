@@ -175,15 +175,13 @@ const select = {
 
           if(selectedOptionImage) {
             if(selectedOption) {
-              selectedOptionImage.classList.add('active');
+              selectedOptionImage.classList.add(classNames.menuProduct.imageVisible);
             }
             else if(!selectedOption) {
-              selectedOptionImage.classList.remove('active');
+              selectedOptionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
-        }
-
-        
+        }        
       }
     
       // update calculated price in the HTML
