@@ -157,18 +157,17 @@ const select = {
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          
-          if(formData[paramId] && formData[paramId].includes(optionId)){
-            // check if the option is not default
-            if(option != option.hasOwnProperty('default')){
-              // console.log('to nie jest domyślna opcja')
-              // add option price to price variable
+          const selectedOption = formData[paramId] && formData[paramId].includes(optionId);
+
+          if(selectedOption){
+            if(!option.default){
               price += option.price;
-            } else { 
-              if(option == option.hasOwnProperty('default')){
-                price -= option.price;
-              }
+              // console.log("Dodano dodatek, cena wzrasta o: ", option.price, "$");
             }
+          }
+          else if(option.default) {
+            price -= option.price;
+            // console.log("Odjęto dodatek, cena maleje o: ", option.price, "$");
           }
         }
       }
