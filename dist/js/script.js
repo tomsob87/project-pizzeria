@@ -89,6 +89,7 @@ const select = {
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -158,6 +159,8 @@ const select = {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           const selectedOption = formData[paramId] && formData[paramId].includes(optionId);
+          const selectedOptionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);   
+          
 
           if(selectedOption){
             if(!option.default){
@@ -169,7 +172,18 @@ const select = {
             price -= option.price;
             // console.log("Odjęto dodatek, cena maleje o: ", option.price, "$");
           }
+
+          if(selectedOptionImage) {
+            if(selectedOption) {
+              selectedOptionImage.classList.add('active');
+            }
+            else if(!selectedOption) {
+              selectedOptionImage.classList.remove('active');
+            }
+          }
         }
+
+        
       }
     
       // update calculated price in the HTML
