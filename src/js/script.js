@@ -255,19 +255,17 @@
     prepareCartProductParams(){
       const thisProduct = this;
     
-      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+      // covert form to object structure
       const formData = utils.serializeFormToObject(thisProduct.dom.form);
-      // console.log('formData', formData);
     
       const params = {};
-      // console.log(params);
-
+      
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
-        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        // determine param value
         const param = thisProduct.data.params[paramId];
-        // console.log(paramId, param);
     
+        // create category param in params const
         params[paramId] = {
           label: param.label,
           options: {}
@@ -275,16 +273,13 @@
 
         // for every option in this category
         for(let optionId in param.options) {
-          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          // determine option value
           const option = param.options[optionId];
           const selectedOption = formData[paramId] && formData[paramId].includes(optionId);
 
-          // console.log(paramId);
-
-          if(selectedOption){
+         if(selectedOption){
             params[paramId].options[optionId] = option.label;
           } 
-
         }        
       }
 
@@ -407,6 +402,8 @@ class Cart {
     thisCart.dom.wrapper = element;
 
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+    
   }
 
   initActions(){
@@ -423,6 +420,18 @@ class Cart {
     const thisCart = this;
 
     // console.log('Adding product', menuProduct);
+
+    //generate html based on template
+    const generatedHTML = templates.cartProduct(menuProduct);
+    // console.log(generatedHTML);
+
+    // thisCart.element = utils.createDOMFromHTML(generatedHTML);
+    // console.log(thisCart.element);
+    
+    const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+    // console.log(generatedDOM)
+
+    thisCart.dom.productList.appendChild(generatedDOM);
   }
 }
 
