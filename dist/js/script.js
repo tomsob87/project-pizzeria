@@ -478,16 +478,20 @@
       let totalNumber = 0;
       let subtotalPrice = 0;
 
-      // console.log(thisCart.products);
+      console.log(thisCart.products);
 
       for (let product of thisCart.products) {
         totalNumber += product.amount;
         subtotalPrice += product.price;
       }
 
-      if(totalNumber > 0){
+      if(totalNumber > 0 && totalNumber <= 3){
         thisCart.totalPrice = subtotalPrice + deliveryFee;
         thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+        // Free delivery fee above 3 totalNumber
+      } else if (totalNumber > 3) {
+        thisCart.totalPrice = subtotalPrice;
+        thisCart.dom.deliveryFee.innerHTML = "0";
       } else {
         thisCart.totalPrice = 0;
         thisCart.dom.deliveryFee.innerHTML = 0;
@@ -545,7 +549,7 @@
         payload.products.push(prod.getData());
       }
 
-      console.log(payload);
+      // console.log(payload);
 
       const options = {
         method: 'POST',
