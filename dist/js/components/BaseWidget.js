@@ -20,8 +20,7 @@ class BaseWidget {
   
         const newValue = thisWidget.parseValue(value);
   
-        // ToDo Add Validation
-        if(newValue !== thisWidget.correctValue && !isNaN(newValue) && thisWidget.isValid(newValue)){
+        if (newValue != thisWidget.correctValue && thisWidget.isValid(newValue)) {
           thisWidget.correctValue = newValue;
           thisWidget.announce();
         }

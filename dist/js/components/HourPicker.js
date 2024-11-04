@@ -11,6 +11,10 @@ class HourPicker extends BaseWidget{
     thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
     thisWidget.initPlugin();
     thisWidget.value = thisWidget.dom.input.value;
+    
+
+    // console.log(thisWidget.dom.input, thisWidget.dom.output);
+    
   }
 
   initPlugin(){
@@ -18,8 +22,10 @@ class HourPicker extends BaseWidget{
     // eslint-disable-next-line no-undef
     rangeSlider.create(thisWidget.dom.input);
     thisWidget.dom.input.addEventListener('input', function(){
-      thisWidget.value = thisWidget.dom.input.value;
-    });
+      // console.log(thisWidget.dom.input.value);
+      thisWidget.value = thisWidget.dom.input.value; 
+      // console.log('Updated thisWidget.value:', thisWidget.value);
+    }); 
   }
 
   parseValue(value){
