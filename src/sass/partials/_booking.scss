@@ -173,6 +173,22 @@
         }
   
       }
+
+      &.picked {
+        color: $color-dark;
+  
+        &::after {
+          position: absolute;
+          content: 'Table-1';
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: $color-picked;
+          opacity: 0.4;
+        }
+  
+      }
     }
   
     [data-table="1"] {

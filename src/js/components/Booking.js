@@ -12,6 +12,7 @@ class Booking {
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
+        thisBooking.pickTable();
     }
 
     getData(){
@@ -119,6 +120,16 @@ class Booking {
         }
         }
 
+    pickTable(){
+        const thisBooking = this;
+
+        thisBooking.dom.floorPlan.addEventListener('click', function(event){
+            if(event.target.classList.contains(classNames.booking.table) && !event.target.classList.contains(classNames.booking.tableBooked)) {
+                event.target.classList.toggle(classNames.booking.tablePicked);
+            }
+        }) 
+    }    
+
     updateDOM(){
         const thisBooking = this;
 
@@ -169,7 +180,10 @@ class Booking {
         thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
         thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
+        thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+        
     }
 
     initWidgets(){
@@ -184,6 +198,9 @@ class Booking {
         thisBooking.dom.wrapper.addEventListener('updated', function(){
             thisBooking.updateDOM();
         })
+
+        
+        
 
         // thisBooking.peopleAmount.addEventListener('updated', function(){
 

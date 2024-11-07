@@ -44,6 +44,7 @@ export const select = {
     booking: {
       peopleAmount: '.people-amount',
       hoursAmount: '.hours-amount',
+      floorPlan: '.floor-plan',
       tables: '.floor-plan .table',
     },
     nav: {
@@ -80,7 +81,9 @@ export const classNames = {
     },
     booking: {
       loading: 'loading',
+      table: 'table',
       tableBooked: 'booked',
+      tablePicked: 'picked',
     },
     nav: {
       active: 'active',
