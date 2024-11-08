@@ -219,6 +219,8 @@ class Booking {
 
         thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+        thisBooking.dom.bookingForm = thisBooking.dom.wrapper.querySelector(select.booking.bookingForm);
                 
     }
 
@@ -234,6 +236,11 @@ class Booking {
         thisBooking.dom.wrapper.addEventListener('updated', function(){
             thisBooking.updateDOM();
         })
+
+        thisBooking.dom.bookingForm.addEventListener('submit', function(event){
+            event.preventDefault();
+            thisBooking.sendBooking();
+        })
         
         
         // thisBooking.peopleAmount.addEventListener('updated', function(){
@@ -243,6 +250,35 @@ class Booking {
         // thisBooking.hoursAmount.addEventListener('updated', function(){
 
         // });
+    }
+
+    sendBooking(){
+        const thisBooking = this;
+
+        const url = settings.db.url + '/' + settings.db.bookings;
+
+        const payload = {
+            date: thisBooking.datePicker.value,
+            hour: thisBooking.hourPicker.value,
+            table: parseInt(thisBooking.pickedTable),
+            duration: parseInt(thisBooking.hoursAmount.value),
+            ppl: thisBooking.peopleAmount.value,
+
+        };
+
+        console.log('payload Booking: ', payload);
+
+        const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          };
+          
+          fetch(url, options);
+
+          console.log('WYsłano')
     }
     
 }
