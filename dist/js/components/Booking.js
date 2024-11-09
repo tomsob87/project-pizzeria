@@ -221,6 +221,12 @@ class Booking {
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
         thisBooking.dom.bookingForm = thisBooking.dom.wrapper.querySelector(select.booking.bookingForm);
+
+        thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.checkBox)
+
+        thisBooking.dom.phoneNumber = thisBooking.dom.wrapper.querySelector(select.booking.phoneNumber);
+        thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+       
                 
     }
 
@@ -257,16 +263,36 @@ class Booking {
 
         const url = settings.db.url + '/' + settings.db.bookings;
 
+        
+
+        if (!isNaN(thisBooking.pickedTable)){
+            thisBooking.pickedTableNumber = parseInt(thisBooking.pickedTable)
+        } else {
+            thisBooking.pickedTableNumber = null;
+        }
+
+        thisBooking.pickedTableNumber = thisBooking.pickedTable;
+
+        
+
         const payload = {
             date: thisBooking.datePicker.value,
             hour: thisBooking.hourPicker.value,
-            table: parseInt(thisBooking.pickedTable),
+            table: thisBooking.pickedTableNumber,
             duration: parseInt(thisBooking.hoursAmount.value),
             ppl: thisBooking.peopleAmount.value,
-
+            starters: [],
+            phone: thisBooking.dom.phoneNumber.value,
+            address: thisBooking.dom.address.value,
         };
 
         console.log('payload Booking: ', payload);
+
+        for(let starter of thisBooking.dom.starters){
+            if(starter.checked){
+                payload.starters.push(starter.value);
+            }
+        }
 
         const options = {
             method: 'POST',
@@ -277,10 +303,8 @@ class Booking {
           };
           
           fetch(url, options);
-
-          console.log('WYsłano')
     }
-    
+   
 }
 
 export default Booking;
