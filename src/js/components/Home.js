@@ -1,8 +1,31 @@
+import { select, templates } from "../settings.js"; 
+
 class Home {
     constructor(sliderSelector) {
         const thisHome = this;
-        thisHome.sliderSelector = sliderSelector; // Przechowujemy selektor slidera
-        thisHome.slider = null;                   // Obiekt Flickity
+
+        thisHome.sliderSelector = sliderSelector;
+        thisHome.slider = null;
+
+        thisHome.render();
+    }
+
+    render(){
+        const thisHome = this;
+
+        const generatedHTML = templates.homepage();
+        
+        thisHome.dom = {};
+        thisHome.dom.wrapper = document.querySelector(select.containerOf.home);
+        
+        thisHome.dom.wrapper.innerHTML = generatedHTML;
+        // console.log(thisHome.dom.wrapper.innerHTML)
+
+        thisHome.dom.homeNav = thisHome.dom.wrapper.querySelector(select.nav.homeNav)
+        thisHome.dom.order = thisHome.dom.wrapper.querySelector(select.nav.homeOrder);
+        thisHome.dom.booking = thisHome.dom.wrapper.querySelector(select.nav.homeBooking);
+
+
     }
 
     initWidgets() {
