@@ -1,18 +1,19 @@
-#home {
-    .container{
-        margin: ($base-size * 3.5) auto;
-        padding: ($base-size * 3) ($base-size * 4);
-        background: $color-light;
-        border-bottom: 1px solid lighten($color-dark, 70%);
-        border-radius: $radius;
-        .home-nav{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            color: white;
-            text-transform: uppercase;
-            text-align: center;
-            .nav-positions {
+#home .container{
+    margin: ($base-size * 3.5) auto;
+    padding: ($base-size * 3) ($base-size * 4);
+    background: $color-light;
+    border-bottom: 1px solid lighten($color-dark, 70%);
+    border-radius: $radius;
+}
+
+    .home-nav{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        .nav-positions {
                 flex-basis: 49.5%;
                 display: flex;
                 flex-direction: column;
@@ -24,42 +25,9 @@
                 margin-bottom: 1%;
                 overflow: hidden;
                 cursor: pointer;
-                h2 {
-                    position: absolute;
-                    margin: 0;
-                    top: 50%;
-                    left: 0;
-                    width: 100%;
-                    transform: translateY(-50%);
-                    transition: .2s;
-                }
-                &:hover h2 {
-                    top: 30%;
-                }
-                p {
-                    position: absolute;
-                    margin: 0;
-                    top: 130%;
-                    left: 0;
-                    width: 100%;
-                    transform: translateY(-50%);
-                    transition: .2s;
-                }
-                &:hover p {
-                    top: 70%;
-                }  
         }
-            .order {
-                background-image: url(../../images/home/pizza-1.jpg);
-            }
-            .booking {
-                background-image: url(../../images/home/pizza-2.jpg);
-            }
-            .opening-hours {
-                background-color: $color-main;
-                flex-basis: 100%;
-            }
         }
+
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -107,7 +75,6 @@
                     opacity: 1;
                 }
 
-
             }
             .pic-1{
                 background-image: url(../../images/home/gallery/pizza-4.jpg);
@@ -128,5 +95,96 @@
                 background-image: url(../../images/home/gallery/pizza-9.jpg);
             }
         }
+
+.order {
+    background-image: url(../../images/home/pizza-1.jpg);
+    h2 {
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        transition: .2s;
     }
+    &:hover h2 {
+        top: 30%;
+    }
+    p {
+        position: absolute;
+        margin: 0;
+        top: 130%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        transition: .2s;
+    }
+    &:hover p {
+        top: 70%;
+    }  
 }
+
+.booking {
+    background-image: url(../../images/home/pizza-2.jpg);
+    h2 {
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        transition: .2s;
+    }
+    &:hover h2 {
+        top: 30%;
+    }
+    p {
+        position: absolute;
+        margin: 0;
+        top: 130%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        transition: .2s;
+    }
+    &:hover p {
+        top: 70%;
+    }  
+}
+
+.opening-hours {
+    background-color: $color-main;
+    flex-basis: 100%;
+}
+
+
+
+.carousel {
+    position: relative;
+    margin: 100px auto;
+    
+}
+
+.carousel-cell {
+    width: 100%; 
+    height: 180px;
+    margin-right: 10px;
+    margin-bottom: 40px;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%;
+        height: 100%;
+        object-fit: contain;
+    }
+    div {
+        position: absolute;
+        width: 70%;
+        top: 0;
+        right: 0;
+        padding: 0 30px;
+    }
+  }
+
+  
