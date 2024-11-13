@@ -55,6 +55,9 @@ export const select = {
     },
     nav: {
       links: '.main-nav a',
+      linkHome: '.main-nav a[href="#home"]',
+      linkOrder: '.main-nav a[href="#order"]',
+      linkBooking: '.main-nav a[href="#booking"]',
       homeOrder: '.nav-positions.order',
       homeBooking: '.nav-positions.booking',
       homeNav: '.home-nav',
