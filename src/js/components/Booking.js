@@ -109,8 +109,6 @@ class Booking {
 
         const startHour = utils.hourToNumber(hour);
 
-
-
         for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
             // console.log('loop', hourBlock);
 
@@ -137,7 +135,6 @@ class Booking {
 
                     const pickedTableId = event.target.getAttribute('data-table');
                     thisBooking.pickedTable = pickedTableId;
-                    
 
                     event.target.classList.add(classNames.booking.tablePicked);
 
@@ -199,6 +196,7 @@ class Booking {
                 table.classList.remove(classNames.booking.tableBooked);
             }
         }
+        
     }    
 
     render(element){
@@ -263,8 +261,6 @@ class Booking {
 
         const url = settings.db.url + '/' + settings.db.bookings;
 
-        
-
         if (!isNaN(thisBooking.pickedTable)){
             thisBooking.pickedTableNumber = parseInt(thisBooking.pickedTable)
         } else {
@@ -272,8 +268,6 @@ class Booking {
         }
 
         thisBooking.pickedTableNumber = thisBooking.pickedTable;
-
-        
 
         const payload = {
             date: thisBooking.datePicker.value,
@@ -302,7 +296,20 @@ class Booking {
             body: JSON.stringify(payload),
           };
           
-          fetch(url, options);
+          fetch(url, options)
+            .then(response => {
+            if (!response.ok) {
+                throw new Error(`Błąd: ${response.status}`);
+            }
+            return response.json(); // Oczekujemy JSON w odpowiedzi
+        })
+            .then(function() {
+            
+            // Jeśli request się powiódł, dodajemy rezerwację lokalnie
+            thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+            console.log(thisBooking.booked)
+        })
+
     }
    
 }
